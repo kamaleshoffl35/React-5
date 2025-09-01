@@ -1,25 +1,18 @@
-import { useReducer } from "react";
+import { useState } from "react";
 
-function reducer(state,action){
-    switch(action.type){
-        case "Increment":
-            return {count: state.count + 1 }
-        case "Decrement":
-            return {count: state.count - 1}
-        case "reset":
-            return {count: state.count = 0 }
-        default:
-            return 0
-    }
-}
 function Counter(){
-    const [state, dispatch] = useReducer(reducer, {count : 0})
-    return(
+    const[count,setCount] = useState(0)
+    const Inc = () =>{
+        setCount(count+1)
+    }
+    const Dec = () =>{
+        setCount(count-1)
+    }
+    return (
         <>
-        <p>{state.count}</p>
-        <button onClick={()=>{dispatch({type : "Increment"})}}>Increment</button>
-        <button onClick={()=>{dispatch({type : "Decrement"})}}>Decrement</button>
-        <button onClick={()=>{dispatch({type : "Reset"})}}>Reset</button>
+        <h1>Counter Application {count}</h1>
+        <button onClick = {Inc}>Increase</button>
+        <button onClick = {Dec}>Decrease</button>
         </>
     )
 }
